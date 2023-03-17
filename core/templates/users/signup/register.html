@@ -1,0 +1,35 @@
+{% extends "layouts/base.html" %}
+{% load static %}
+{% include 'layouts/navbar.html' %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="card card-signin">
+            <div class="card-body ">
+                <form class="form-sign" method="POST">
+                    {% csrf_token %}
+                    <input type="text" name="firstname" class="form-control" id="inputFirstName" placeholder="First Name">
+                    <input type="text" name="lastname" class="form-control" id="inputLastname" placeholder="Last Name" >
+                    <input type="email" name="email" class="form-control" id="inputEmail" placeholder="Email">
+                    <input type="text" name="username" class="form-control" id="inputUsername" placeholder="Username" >
+                    <input type="password" name="password1" class="form-control" id="inputPassword1" placeholder="Password" required>
+                    <input type="password" name="password2" class="form-control" id="inputPassword2" placeholder="Repeat Password" required>
+                    {% for field in RegisterForm %}
+                  <p>{% for error in field.errors %}</p>
+                    <p style="color: red">{{ error }}</p>
+                    {% endfor %}
+
+                    {% endfor%}
+                    {% if RegisterForm.non_field_errors %}
+                    <div style="color: red">
+                        <p>{{RegisterForm.non_field_error}}</p>
+                    </div>
+                    {% endif %}
+                    <button class="btn btn-lg btn-primary btn-clock">Register</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock%}

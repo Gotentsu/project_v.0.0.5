@@ -1,0 +1,12 @@
+{% extends "layouts/base.html" %}
+{% load static %}
+{% include 'layouts/navbar.html' %}
+
+{% block content%}
+<div class="container-fluid">
+    <div class="row justify-content-center">
+        Hi user, {{ user.email }}
+    </div>
+</div>
+
+{% endblock%}
